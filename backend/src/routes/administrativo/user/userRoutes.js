@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../../../controllers/administrativo/user/userController');
 
-// 1. Defina a rota mais específica (/active) primeiro.
+// Defina a rota mais específica (/active/dia) primeiro
+router.get('/active/dia', UserController.getActiveUser);
+
+// Depois, a rota /active
 router.get('/active', UserController.getActiveUserCount);
 
-// 2. Defina a rota com o parâmetro dinâmico (:id) depois.
+// Por último, a rota mais genérica com o parâmetro dinâmico (:id)
 router.get('/:id', UserController.getById);
 
 // Rotas restantes

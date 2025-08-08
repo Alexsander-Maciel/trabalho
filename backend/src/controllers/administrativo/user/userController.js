@@ -39,6 +39,20 @@ const UserController = {
     }
   },
 
+   async getActiveUser(req, res) {
+    try {
+      // Considera usuários ativos que fizeram alguma requisição nos últimos 5 minutos
+      const activeUsers = await UserModel.getActiveUser();
+      console.log('usuários ativos:', activeUsers); 
+      
+      // Envia a resposta JSON de volta para o cliente
+      res.json(activeUsers);
+    } catch (error) {
+      console.error('Erro ao buscar a contagem de usuários ativos:', error);
+      res.status(500).json({ message: 'Erro ao buscar a contagem de usuários ativos' });
+    }
+  },
+
   // Cria novo usuário
   async insert(req, res) {
     try {
