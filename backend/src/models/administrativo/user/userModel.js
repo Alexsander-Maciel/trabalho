@@ -30,9 +30,24 @@ const UserModel = {
     );
     
     // Retorna apenas o primeiro (e único) objeto do array
-    return rows[0]; 
+    return rows; 
   } catch (error) {
     console.error('Erro ao buscar a contagem de usuários ativos:', error);
+    throw error;
+  }
+},
+
+ async getActiveUser() {
+  try {
+    // A consulta retorna um array com um único objeto: [{ activeCount: 5 }]
+    const [rows] = await db.query(
+      'SELECT *  FROM users WHERE last_active >= NOW() - INTERVAL 5 MINUTE'
+    );
+    
+    // Retorna apenas o primeiro (e único) objeto do array
+    return rows[0]; 
+  } catch (error) {
+    console.error('Erro ao buscar usuários ativos:', error);
     throw error;
   }
 },
