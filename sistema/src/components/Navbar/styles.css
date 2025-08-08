@@ -1,0 +1,95 @@
+/* Estilos da navbar principal (mantém o que você já tinha) */
+.navbar {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Estilos para os itens de menu */
+.menu-item {
+    position: relative;
+    margin-left: 25px;
+}
+
+.menu-item a,
+.menu-item .parent-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-item a:hover,
+.menu-item .parent-link:hover {
+    color: #3498db;
+}
+
+.parent-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para o ícone de seta */
+.arrow-icon {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.open {
+    transform: rotate(180deg);
+}
+
+/* Estilos para o sub-menu (aninhado) */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%; /* Posiciona abaixo do item pai */
+    left: 0;
+    background-color: #34495e;
+    min-width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 10; /* Garante que o menu fique sobre outros elementos */
+}
+
+.submenu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Garante que sub-menus aninhados sejam exibidos corretamente */
+.submenu .menu-item {
+    margin-left: 0;
+}
+
+.submenu .menu-item a,
+.submenu .menu-item .parent-link {
+    padding: 10px 15px;
+}
